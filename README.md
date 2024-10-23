@@ -1,31 +1,120 @@
-# api-agenda
+# API Personas
+Uso de FastAPI y MariaDB para generar una API REST con las siguientes funciones: insertar, borrar, actualizar, buscar y listar registros de una tabla.
 
-Mi primera api
+## 1. Configurar codespace
 
-## Script con las sigientes carracteristicas
+1.1 Actualizar versiones de librerias y paquetes instalables
 
-    1.1 crear la base de datos db_agenda
+````shell
+$ sudo apt-get update
+````
 
-    1.2 crear la tabla de personas
-
-    1.3 ingresar 3 registros
-    
-## configurasion de repositorio con las sigientes elementos
-
-    2.1 REDMI.md
-
-    2.2 LICENSE
-
-    2.3 REQUERIMENS.TXT (fastapi)
-
-    2.4 genera el .gitignore
+1.2 Instalar MariaDB
 
 
-|atributo|campo|tipo de dato|descripcion|
-|--|--|--|--|
-|pk|id_persona|integer|indentificador unico de la persona|
-|-|nombre|varchar|nombre de la persona|
-|-|primer_apellido|varchar|el primer apellido de la persona|
-|-|segundo_apellido|varchar|el segundo apellido de la persona|
-|-|email|text|correo de la persona|
-|-|telefono|varchar|contacto de la persona|    
+````shell
+$ sudo apt-get install mariadb-server -y
+````
+
+1.3 Detener el servidor
+
+````shell
+$ sudo /etc/init.d/mysql stop
+````
+
+1.4 Iniciar el servidor
+
+````shell
+$ sudo mysqld_safe --skip-grant-tables &
+````
+
+1.5 Conectando con el servidor MySQL
+
+````shell
+$ mysql -u root
+````
+
+1.6 Salir de la MariaDB
+
+````shell
+MariaDB [(none)]> exit;
+````
+
+## 2. Script para crear la base de datos
+
+2.1 Diccionario de datos de la tabla **personas**.
+
+|Atributos|Campo|Tipo de dato|Descripción|
+| -- | -- | -- | -- |
+| PK | id_persona | int | Identificador de la persona |
+| - | nombre | varchar(50) | Nombre de la persona |
+| - | primer_apellido | varchar(50) | Primer apellido de la persona |
+| - | segundo_apellido | varchar (50) | Segundo apellido de la persona |
+| - | email | varchar(100) |  Email de la persona |
+| - | telefono | varchar(10) | Teléfono de la persona |
+
+2.2 Script para crear la base de datos
+
+* Crear la base de datos **db_agenda**.
+* Crear la tabla **personas**.
+* Insertar 2 registros en la tabla **personas**.
+
+````sql
+CREATE DATABASE db_agenda;
+
+USE  db_agenda;
+
+CREATE TABLE personas(
+    id_persona int AUTO_INCREMENT PRIMARY KEY,
+    nombre varchar(50) NOT NULL,
+    primer_apellido varchar(50) NOT NULL,
+    segundo_apellido varchar(50) NOT NULL,
+    email varchar(100) NOT NULL,
+    telefono varchar(10) NOT NULL
+);
+
+INSERT INTO personas (nombre,primer_apellido,segundo_apellido,email,telefono)
+VALUES 
+("Dejah", "Thoris", "Barsoon","dejah@email.com","1234567890"),
+("John", "Carter", "Earth", "john@email.com","2345678901");
+
+SELECT * FROM personas;
+````
+
+2.3 Crear la base de datos desde MariaDB shell
+
+````shell
+MariaDB [(none)]> source db_agenda.sql
+````
+
+## 3. Ambiente virtual
+
+3.1 Crear el ambiente virtual
+
+````shell
+$  python3 -m venv venv
+````
+
+3.2 Iniciar el ambiente virtual
+
+````shell
+$ source venv/bin/activate
+````
+
+3.2 Desactivar el ambiente virtual
+
+````shell
+$ deactivate
+````
+
+3.3 Actualizar PIP
+
+````shell
+$ pip install --upgrade pip
+````
+
+3.4 Instalar las librerias
+
+````shell
+pip install -r requirements.txt
+````

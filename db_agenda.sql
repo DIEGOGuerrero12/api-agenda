@@ -1,8 +1,9 @@
-CREATE DATABASE db_agenda;
+DROP DATABASE IF EXISTS db_agenda;
+CREATE DATABASE IF NOT EXISTS db_agenda;
 
-USE  db_agenda;
+USE db_agenda;
 
-CREATE TABLE personas(
+CREATE TABLE IF NOT EXISTS personas(
     id_persona int AUTO_INCREMENT PRIMARY KEY,
     nombre varchar(50) NOT NULL,
     primer_apellido varchar(50) NOT NULL,
@@ -10,6 +11,8 @@ CREATE TABLE personas(
     email varchar(100) NOT NULL,
     telefono varchar(10) NOT NULL
 );
+
+DELETE FROM personas;
 
 INSERT INTO personas (nombre,primer_apellido,segundo_apellido,email,telefono)
 VALUES 

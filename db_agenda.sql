@@ -16,7 +16,7 @@ DELETE FROM personas;
 
 INSERT INTO personas (nombre,primer_apellido,segundo_apellido,email,telefono)
 VALUES 
-("Dejah", "Thoris", "Barsoon","dejah@email.mr","1234567890"),
-("John", "Carter", "Earth", "john@email.ea","2345678901");
-
+('Ana', 'Lopez', 'Martinez', 'ana.lopez23@gmail.com', '5551234567'),
+('Carlos', 'Perez', 'Gomez', 'carlospg78@hotmail.com', '7719876543'),
+('Maria', 'Garcia', 'Sanchez', 'maria_garcia@gmail.com', '4443217890');
 SELECT * FROM personas;
